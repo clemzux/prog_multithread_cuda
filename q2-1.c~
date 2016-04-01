@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <pthread.h>
+
+void* salut(void* arg){
+
+	sleep(2);
+	
+	pthread_exit(pthread_self());
+}
+
+int main(){
+
+	pthread_t id, idd;
+
+	pthread_create(&id, NULL, salut, NULL);
+	pthread_detach(id);
+	
+	printf("pere : id du thread fils : %d\n", (int)idd);
+	
+	pthread_exit(NULL);
+}
+
